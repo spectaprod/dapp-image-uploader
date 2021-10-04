@@ -5,7 +5,8 @@ import Compressor from 'compressorjs';
 import upload from './upload';
 
 
-let id,
+let button,
+    id,
     processing = false;
 
 
@@ -84,7 +85,7 @@ async function process(data) {
 
     alert.success('Dash Document saved successfully! Check console for output');
 
-    this.element.classList.remove('button--processing');
+    button.classList.remove('button--processing');
     processing = false;
 }
 
@@ -130,7 +131,9 @@ const metadata = async function(e) {
         alert.error('You must upload image file(s) to continue.');
     }
     else {
-        this.element.classList.add('button--processing');
+        button = this.element;
+
+        button.classList.add('button--processing');
         processing = true;
         process(data);
     }
