@@ -11,7 +11,7 @@ let button,
 
 
 async function uploadImage(compress, encrypt, file, unlisted) {
-    let content = await file.text();
+    let content = file;
 
     if (compress) {
         content = new Promise((resolve, reject) => {
@@ -26,7 +26,7 @@ async function uploadImage(compress, encrypt, file, unlisted) {
     }
 
     if (encrypt) {
-        content = await user.message.encrypt(content);
+        content = await user.message.encrypt(await file.text());
     }
 
     let cid = await storage.ipfs.upload.file(content);
